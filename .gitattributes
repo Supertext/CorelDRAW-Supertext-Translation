@@ -1,0 +1,5 @@
+*.bas text eol=crlf
+*.md  text eol=lf
+*.js  text eol=lf
+*.gms binary
+*.cdr binary
