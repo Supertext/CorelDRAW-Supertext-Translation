@@ -22,9 +22,9 @@ If nothing happens or the Scripts menu entries are greyed out: open **Windows Se
 
 ## 2. Download
 
-Download the latest release from the [Releases page](https://github.com/Supertext/CorelDRAW-Supertext-Translation/releases), or clone the repository. You need `src/SupertextTranslation.bas`.
+Download the latest release from the [Releases page](https://github.com/Supertext/CorelDRAW-Supertext-Translation/releases), use **Code › Download ZIP** on the repository page, or clone the repository on Windows. You need `src/SupertextTranslation.bas`.
 
-If you download the file through the browser's **Raw** view, make sure it is saved as `SupertextTranslation.bas` and not as `.bas.txt`. The file must keep its Windows line endings; the release download and a normal `git clone` on Windows both do.
+Don't save the file from GitHub's **Raw** view: that serves Unix line endings, which the VBA editor can't import. The release download, the ZIP and a `git clone` on Windows all have the Windows line endings (CRLF) it needs.
 
 ## 3. Import the module
 
