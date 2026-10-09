@@ -190,6 +190,15 @@ Round trip:
 5. **Undo:** with "apply to the open document", one **Edit › Undo** must revert the whole import.
 6. Test in the oldest and newest CorelDRAW version you support, in both run detection modes if time allows.
 
+## Code quality and security checks
+
+- **Checks** workflow (`.github/workflows/checks.yml`): [actionlint](https://github.com/rhysd/actionlint) and [zizmor](https://docs.zizmor.sh/) lint the workflows on every push and pull request. Dependency review fails a pull request that adds a package with a known vulnerability (moderate or worse). Actions are pinned to commit SHAs; Dependabot keeps the pins up to date. To run the workflow lint locally: `pip install actionlint-py zizmor`, then `actionlint` and `zizmor .github/workflows` in the repo root.
+- **Links** workflow (`.github/workflows/links.yml`): [lychee](https://lychee.cli.rs/) checks the links in all Markdown files weekly and whenever docs change on `main`. Broken links open (or update) the issue "Broken links in the docs". Links that can't work from CI (local URLs, placeholders, pages behind a login) are excluded in `.lycheeignore`.
+- There is no build or CI test run yet: run the test above before committing. CodeQL (see below) analyses the JavaScript test; it doesn't cover VBA, so review `src/SupertextTranslation.bas` by hand.
+- GitHub settings (set by Remy's setup script, not stored in the repo): **secret scanning with push protection** (a push containing a known token format is rejected; findings under *Security → Secret scanning*) and **CodeQL default setup** (findings under *Security → Code scanning* and as comments on pull requests; PHP isn't covered by CodeQL, which is why the PHP plugins run PHPStan).
+
+Before starting work in this repo, look at its open findings: code scanning alerts, secret scanning alerts, Dependabot PRs and the "Broken links in the docs" issue.
+
 ## Releasing
 
 1. Update `VERSION` at the top of the module (written into the XLIFF `<tool>`).
